@@ -7,6 +7,7 @@ from config import Config
 # import our blueprints
 from .auth.routes import auth
 from .ig.routes import ig
+from .pokemon.routes import pokemon, showPokedex
 
 #import our database
 from .models import db, User
@@ -23,6 +24,8 @@ def load_user(user_id):
 
 app.register_blueprint(auth)
 app.register_blueprint(ig)
+app.register_blueprint(shop)
+app.register_blueprint(pokemon)
 
 app.config.from_object(Config)
 

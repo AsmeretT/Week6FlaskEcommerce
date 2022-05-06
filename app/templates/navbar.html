@@ -49,6 +49,21 @@
                   <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">{{ current_user.username }}</a>
               </li>
           </ul>
+
+          {% if current_user.is_authenticated %}
+          <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('pokemon.showPokedex') }}">View My Pokedex</a>
+          </li>
+          {% endif %}
+
+          <li class="nav-item">
+              <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">{{ current_user.username }}</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('shop.showCart') }}" tabindex="-1" aria-disabled="true"><i class="fas fa-shopping-cart"></i></a>
+          </li>
+         </ul>
+
           <form class="d-flex">
               <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
               <button class="btn btn-outline-success" type="submit">Search</button>

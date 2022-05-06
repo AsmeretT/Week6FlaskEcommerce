@@ -66,3 +66,31 @@ class Cart(db.Model):
     def __init__(self, user_id, product_id):
         self.user_id = user_id
         self.product_id = product_id
+
+class Pokemon(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    pokemon_name = db.Column(db.String(50))
+    img_url = db.Column(db.String(300))
+    ability1 = db.Column(db.String(300))
+    ability2 = db.Column(db.String(300))
+    pokedex_pokemon = db.relationship('Pokedex', backref='pokedex_pokemon', lazy=True)
+
+    def __init__(self, pokemon_name, img_url):
+        self.pokemon_name = pokemon_name
+        self.img_url = img_url
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "pokemon_name": self.pokemon_name,
+            "img_url": self.img_url,
+        }
+
+class Pokedex(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    pokemon_id = db.Column(db.Integer, db.ForeignKey('pokemon.id'), nullable=False)
+
+    def __init__(self, user_id, pokemon_id):
+        self.user_id = user_id
+        self.pokemon_id = pokemon_id
