@@ -56,8 +56,6 @@ def addToCart2():
     return redirect(url_for('shop.individualProduct', product_id=product_id))
 
 
-
-# ADMIN CREATE PRODUCT PAGE
 @shop.route('/products/create')
 @login_required
 def createProduct():
@@ -80,3 +78,10 @@ def createProduct():
         return render_template('create_product.html', form = form)
     else:
         return redirect(url_for('shop.allProducts'))   
+
+@shop.route('/api/products')
+def apiProducts():
+    products = Product.query.all()
+    return {
+        
+        }
